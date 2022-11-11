@@ -32,6 +32,10 @@ contract UniswapV3PoolDeployer is IUniswapV3PoolDeployer {
         int24 tickSpacing
     ) internal returns (address pool) {
         parameters = Parameters({factory: factory, token0: token0, token1: token1, fee: fee, tickSpacing: tickSpacing});
+        // salt值是代币对和费用计算出的哈希值，CREATE2指令使用salt和合约的initcode计算创建合约的地址
+        // 可以在链下计算出已经创建的交易池的地址，从而节省gas
+        // 构造函数反向查询UniswapV3Factory中的parameters值来进行初始变量的赋值
+        // 这样constructor不包含参数，合约的initcode不会因为传入参数不同而不同
         pool = address(new UniswapV3Pool{salt: keccak256(abi.encode(token0, token1, fee))}());
         delete parameters;
     }

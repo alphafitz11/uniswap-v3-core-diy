@@ -3,7 +3,7 @@
 本文件主要分析该项目代码的主体结构，目标是帮助该项目的初学者能够逐步深入该项目的各项细节。对于单个文件的更加详细的分析将会放在对应文件的开头位置的注释中，对于单个函数的较为详细的解释会在函数实现前给出。
 
 建议您先阅读项目白皮书和官网文档，这将有助于您理解项目的代码实现。[该博客](https://liaoph.com
-)上的 [Uniswap V3 系列分析文章](https://liaoph.com/uniswap-v3-1/)也将有助于您理解该项目。
+)上的 [Uniswap V3 系列分析文章](https://liaoph.com/uniswap-v3-1/)也将有助于您理解该项目。本项目代码中的添加的大部分中文注释来自于该系列文章，在此感谢。
 
 ## Overview
 > 以下是核心(core)合约和外围(periphery)合约的总体概览。
@@ -76,96 +76,3 @@ Periphery 是一组智能合约，旨在支持与核心合约的特定领域交�
 
 ### [UniswapV3PoolDeployer](./contracts/UniswapV3PoolDeployer.sol)
 - `deploy`: 通过临时设置参数存储槽，然后在部署池后将其清除来部署具有给定参数的池。
-
-### [interfaces](./contracts/interfaces/)
-#### [IERC20Minimal](./contracts/interfaces/IERC20Minimal.sol)
-
-
-
-#### [IUniswapV3Factory](./contracts/interfaces/IUniswapV3Factory.sol)
-
-
-#### [IUniswapV3Pool](./contracts/interfaces/IUniswapV3Pool.sol)
-
-
-#### [IUniswapV3PoolDeveloper](./contracts/interfaces/IUniswapV3PoolDeployer.sol)
-
-
-#### [callback](./contracts/interfaces/callback/)
-##### [IUniswapV3FlashCallback](./contracts/interfaces/callback/IUniswapV3FlashCallback.sol)
-
-
-##### [IUniswapV3MintCallback](./contracts/interfaces/callback/IUniswapV3MintCallback.sol)
-
-
-##### [IUniswapV3SwapCallback](./contracts/interfaces/callback/IUniswapV3SwapCallback.sol)
-
-
-#### [pool](./contracts/interfaces/pool/)
-##### [IUniswapV3PoolActions](./contracts/interfaces/pool/IUniswapV3PoolActions.sol)
-
-
-##### [IUniswapV3PoolDerivedState](./contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol)
-
-
-##### [IUniswapV3PoolEvents](./contracts/interfaces/pool/IUniswapV3PoolEvents.sol)
-
-
-##### [IUniswapV3PoolImmutables](./contracts/interfaces/pool/IUniswapV3PoolImmutables.sol)
-
-
-##### [IUniswapV3PoolOwnerActions](./contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol)
-
-
-##### [IUniswapV3PoolState](./contracts/interfaces/pool/IUniswapV3PoolState.sol)
-
-
-### [libraries](./contracts/libraries/)
-#### [BitMath](./contracts/libraries/BitMath.sol)
-
-
-#### [FixedPoint128](./contracts/libraries/FixedPoint128.sol)
-
-
-#### [FixedPoint96](./contracts/libraries/FixedPoint96.sol)
-
-
-#### [FullMath](./contracts/libraries/FullMath.sol)
-
-
-#### [LiquidityMath](./contracts/libraries/LiquidityMath.sol)
-
-
-#### [LowGasSafeMath](./contracts/libraries/LowGasSafeMath.sol)
-
-
-#### [Oracle](./contracts/libraries/Oracle.sol)
-
-
-#### [Position](./contracts/libraries/Position.sol)
-
-
-#### [SafeCast](./contracts/libraries/SafeCast.sol)
-
-
-#### [SqrtPriceMath](./contracts/libraries/SqrtPriceMath.sol)
-
-
-
-#### [SwapMath](./contracts/libraries/SwapMath.sol)
-
-
-#### [Tick](./contracts/libraries/Tick.sol)
-
-
-#### [TickBitmap](./contracts/libraries/TickBitmap.sol)
-
-
-#### [TickMath](./contracts/libraries/TickMath.sol)
-
-
-#### [TransferHelper](./contracts/libraries/TransferHelper.sol)
-
-
-#### [UnsafeMath](./contracts/libraries/UnsafeMath.sol)
-

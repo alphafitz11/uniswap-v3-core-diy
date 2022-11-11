@@ -23,14 +23,15 @@ contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegat
         owner = msg.sender;
         emit OwnerChanged(address(0), msg.sender);
 
-        feeAmountTickSpacing[500] = 10;
+        feeAmountTickSpacing[500] = 10;  // 对应0.05%，手续费低的tickSpacing也低
         emit FeeAmountEnabled(500, 10);
-        feeAmountTickSpacing[3000] = 60;
+        feeAmountTickSpacing[3000] = 60;  // 对应0.3%
         emit FeeAmountEnabled(3000, 60);
-        feeAmountTickSpacing[10000] = 200;
+        feeAmountTickSpacing[10000] = 200;  // 对应1%
         emit FeeAmountEnabled(10000, 200);
     }
 
+    /// 创建流动性池，使用代币对和费用作为流动性池mapping的键
     /// @inheritdoc IUniswapV3Factory
     function createPool(
         address tokenA,
@@ -38,11 +39,13 @@ contract UniswapV3Factory is IUniswapV3Factory, UniswapV3PoolDeployer, NoDelegat
         uint24 fee
     ) external override noDelegateCall returns (address pool) {
         require(tokenA != tokenB);
+        // 先将地址排序，方便后续交易池的查询和计算
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0));
         int24 tickSpacing = feeAmountTickSpacing[fee];
         require(tickSpacing != 0);
         require(getPool[token0][token1][fee] == address(0));
+        // 合约部署函数，UniswapV3PoolDeployer.sol中定义 
         pool = deploy(address(this), token0, token1, fee, tickSpacing);
         getPool[token0][token1][fee] = pool;
         // populate mapping in the reverse direction, deliberate choice to avoid the cost of comparing addresses
